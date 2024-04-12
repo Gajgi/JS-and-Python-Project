@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+    <body>
+        <header>
+            <!-- NAGŁÓWEK -->
+        </header>
+
+        <main>
+            {% block content %}
+            // Domyślna zawartość idzie tutaj
+            {% endblock content %}
+        </main>
+
+        <footer>
+            <!-- STOPKA -->
+        </footer>
+    </body>
+</html>
