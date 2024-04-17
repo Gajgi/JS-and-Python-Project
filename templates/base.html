@@ -6,20 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <script src="{% static 'js/app.js' %}"></script>
     </head>
     <body>
-        <header>
-            <!-- NAGŁÓWEK -->
-        </header>
+       <header>
+    <nav>
+    </nav>
+    </header>
 
         <main>
             {% block content %}
-            // Domyślna zawartość idzie tutaj
+            
             {% endblock content %}
         </main>
 
-        <footer>
-            <!-- STOPKA -->
-        </footer>
+    
+
     </body>
 </html>

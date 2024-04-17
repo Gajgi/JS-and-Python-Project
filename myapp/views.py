@@ -1,5 +1,8 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.db.models import Sum
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 # In views.py
@@ -12,13 +15,20 @@ from django.views import View
 from myapp.models import Institution, Donation
 
 
+
 class LandingPage(View):
     def get(self, request):
         total_bags = Donation.objects.all().aggregate(Sum('quantity'))['quantity__sum']
         total_organizations = Institution.objects.count()
+
         fundations = Institution.objects.filter(type='fundacja')
         NGOs = Institution.objects.filter(type='organizacja_pozarzadowa')
         local_collections = Institution.objects.filter(type='zbiorka_lokalna')
+
+        print(fundations)
+        print(NGOs)
+        print(local_collections)
+
         return render(request, 'index.html', {
             'total_bags': total_bags,
             'total_organizations': total_organizations,
@@ -38,7 +48,29 @@ class AddDonation(View):
 class Login(View):
     def get(self, request):
         return render(request, 'login.html')
+    def post(self, request):
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request,email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('landingpage')
+        else:
+            return redirect('register')
+
+
 
 class Register(View):
     def get(self, request):
         return render(request, 'register.html')
+    def post(self, request):
+        name = request.POST.get('name')
+        surname = request.POST.get('surname')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        # Tworzenie nowego użytkownika
+        user = User.objects.create_user(username=name, email=email, password=password)
+        user.first_name = name
+        user.last_name = surname
+        user.save()
+        return redirect('login')

@@ -9,8 +9,8 @@ Document
     <header class="header--main-page">
       <nav class="container container--70">
         <ul class="nav--actions">
-          <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-          <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+          <li><a href="{% url 'login' %}"  class="btn btn--small btn--without-border">Zaloguj</a></li>
+          <li><a href="{% url 'register' %}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
 
         <ul>
@@ -18,7 +18,7 @@ Document
           <li><a href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
           <li><a href="#about-us" class="btn btn--without-border">O nas</a></li>
           <li><a href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-          <li><a href="form.html" class="btn btn--without-border">Przekaż dary</a></li>
+          <li><a href="{% url 'add_donation' %}" class="btn btn--without-border">Przekaż dary</a></li>
           <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
       </nav>
@@ -48,6 +48,9 @@ Document
         </div>
 
       </div>
+    <section id="register" class="register">
+  <!-- dodaje sekcje z rejestracją -->
+</section>
     </section>
 
     <section id="steps" class="steps">
@@ -75,8 +78,7 @@ Document
           <p>kurier przyjedzie w dogodnym terminie</p>
         </div>
       </div>
-
-      <a href="#" class="btn btn--large">Załóż konto</a>
+      <a href="{% url 'register' %}" class="btn btn--large">Załóż konto</a>
     </section>
 
     <section id="about-us" class="about-us">
@@ -92,22 +94,22 @@ Document
       <h2>Komu pomagamy?</h2>
 
       <ul class="help--buttons">
-        <li data-id="1"><a href="#" class="btn btn--without-border active">Fundacjom</a></li>
-        <li data-id="2"><a href="#" class="btn btn--without-border">Organizacjom pozarządowym</a></li>
-        <li data-id="3"><a href="#" class="btn btn--without-border">Lokalnym zbiórkom</a></li>
+        <li data-id="1"><a href="#fundations" class="btn btn--without-border active">Fundacjom</a></li>
+        <li data-id="2"><a href="#NGOs" class="btn btn--without-border">Organizacjom pozarządowym</a></li>
+        <li data-id="3"><a href="#local_collections" class="btn btn--without-border">Lokalnym zbiórkom</a></li>
       </ul>
 
   
       <!-- SLIDE 1 -->
 <div class="help--slides active" data-id="1">
     <ul class="help--slides-items">
-        {% for fundation in fundations %}
+        {% for institution in fundations %}
         <li>
             <div class="institution">
-                <div class="title">{{ fundation.name }}</div>
-                <div class="subtitle">{{ fundation.description }}</div>
+                <div class="title">{{ institution.name }}</div>
+                <div class="subtitle">{{ institution.description }}</div>
                 <div class="text">
-                    {% for category in fundation.categories.all %}
+                    {% for category in institution.categories.all %}
                     {{ category.name }}
                     {% endfor %}
                 </div>
@@ -132,13 +134,13 @@ Document
       <!-- SLIDE 2 -->
       <div class="help--slides" data-id="2">
     <ul class="help--slides-items">
-        {% for NGO in NGOs %}
+        {% for institution  in NGOs %}
         <li>
             <div class="institution">
-                <div class="title">{{ NGO.name }}</div>
-                <div class="subtitle">{{ NGO.description }}</div>
+                <div class="title">{{ institution.name }}</div>
+                <div class="subtitle">{{ institution.description }}</div>
                 <div class="text">
-                    {% for category in NGO.categories.all %}
+                    {% for category in institution.categories.all %}
                     {{ category.name }}
                     {% endfor %}
                 </div>
@@ -162,13 +164,13 @@ Document
       <!-- SLIDE 3 -->
 <div class="help--slides" data-id="3">
     <ul class="help--slides-items">
-        {% for local_collection in local_collections %}
+        {% for institution  in local_collections %}
         <li>
             <div class="institution">
-                <div class="title">{{ local_collection.name }}</div>
-                <div class="subtitle">{{ local_collection.description }}</div>
+                <div class="title">{{ institution.name }}</div>
+                <div class="subtitle">{{ institution.description }}</div>
                 <div class="text">
-                    {% for category in local_collection.categories.all %}
+                    {% for category in institution.categories.all %}
                     {{ category.name }}
                     {% endfor %}
                 </div>
