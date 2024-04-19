@@ -1,3 +1,8 @@
+<<<<<<<<< Temporary merge branch 1
+from django.db import models
+
+# Create your models here.
+=========
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -18,7 +23,6 @@ class Institution(models.Model):
     categories = models.ManyToManyField('Category', related_name='institutions')
 
 
-
 class Donation(models.Model):
     # Atrybuty modelu Donation
     quantity = models.PositiveIntegerField()
@@ -32,4 +36,4 @@ class Donation(models.Model):
     pick_up_time = models.TimeField()
     pick_up_comment = models.TextField()
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-
+>>>>>>>>> Temporary merge branch 2

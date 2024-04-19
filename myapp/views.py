@@ -1,8 +1,8 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+<<<<<<<<< Temporary merge branch 1
+=========
 from django.db.models import Sum
-from django.shortcuts import render, redirect
-
+>>>>>>>>> Temporary merge branch 2
+from django.shortcuts import render
 
 # Create your views here.
 # In views.py
@@ -63,14 +63,4 @@ class Login(View):
 class Register(View):
     def get(self, request):
         return render(request, 'register.html')
-    def post(self, request):
-        name = request.POST.get('name')
-        surname = request.POST.get('surname')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        # Tworzenie nowego użytkownika
-        user = User.objects.create_user(username=name, email=email, password=password)
-        user.first_name = name
-        user.last_name = surname
-        user.save()
-        return redirect('login')
+>>>>>>>>> Temporary merge branch 2
