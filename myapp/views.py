@@ -1,8 +1,7 @@
-<<<<<<<<< Temporary merge branch 1
-=========
+from django.contrib.auth import authenticate, login
 from django.db.models import Sum
->>>>>>>>> Temporary merge branch 2
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 
 # Create your views here.
 # In views.py
@@ -63,4 +62,4 @@ class Login(View):
 class Register(View):
     def get(self, request):
         return render(request, 'register.html')
->>>>>>>>> Temporary merge branch 2
+
